@@ -1,5 +1,34 @@
 class Solution {
 public:
+    ListNode* rotateRight(ListNode* head, int k) {
+        if (head == NULL) return NULL;
+
+        if (head->next == NULL || k == 0) return head;
+        ListNode* curr = head;
+        int cnt = 1;
+        while (curr->next != NULL)
+        {
+            cnt++;
+            curr = curr->next;
+        }
+        curr->next = head;
+        int z = k % cnt;
+        int c = cnt - z;
+        while (c--)
+        {
+            curr = curr->next;
+        }
+        head = curr->next;
+        curr->next = NULL;
+        return head;
+
+    }
+};
+
+// OR
+
+class Solution {
+public:
     int len(ListNode* head)
     {
         int cnt = 0;
